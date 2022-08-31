@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="yemian/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="yemian/css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">桥梁卡号</label>
+        <div class="layui-input-block">
+            <input type="text" name="qiaoliaoKaID" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入桥梁卡号" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">桥台形式</label>
+        <div class="layui-input-block">
+            <input  type="text" name="qiaotaixing_shi" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入建设单位" value="" class="layui-input">
+            <!-- <tip>填写桥梁卡号。</tip>-->
+            <!--
+                        <tip> <span id="qiaoliaoKaID_err" class="err_msg" style="display: none">该桥梁已存在</span></tip>
+            -->
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">桥台数量</label>
+        <div class="layui-input-block">
+            <input type="text" name="qiaotai_number" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入建设日期" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">桥台标高</label>
+        <div class="layui-input-block">
+            <input type="text" name="qiaotai_biaogao" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入面积" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">桥墩形式</label>
+        <div class="layui-input-block">
+            <input type="text" name="qiaodunxing_shi" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入长度" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">桥墩数量</label>
+        <div class="layui-input-block">
+            <input type="text" name="qiaodun_number" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入长度" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">桥墩标高</label>
+        <div class="layui-input-block">
+            <input type="text" name="qiaodun_biaogao" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入长度" value="" class="layui-input">
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">确认保存</button>
+        </div>
+    </div>
+
+</div>
+<script src="yemian/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script>
+    /*  document.getElementById("qiaoliaoKaID").onblur = function () {
+          var qiaoliaoKaID = this.value;
+          axios({
+              method:"get",
+              url:"http://localhost:8080/webdemo/jianChaServlet?qiaoliaoKaID="+qiaoliaoKaID,
+
+          }).then(function (resp) {
+              // 判断响应数据是否为 success
+              if(resp.data ==qiaoliaoKaID ){
+                  //用户名存在，显示提示信息
+                  document.getElementById("qiaoliaoKaID_err").style.display = '';
+              }else {
+                  //用户名不存在 ，清楚提示信息
+                  document.getElementById("qiaoliaoKaID_err").style.display = 'none';
+              }
+          })
+      }*/
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+
+            data=data.field
+
+            axios({
+                method:"post",
+                url:"http://localhost:8080/webdemo/addServlet/add3Servlet",
+                data:data
+            }).then(function (resp) {
+                // 判断响应数据是否为 success
+                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                parent.location.reload();
+                parent.layer.close(iframeIndex);
+            })
+
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

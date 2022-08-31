@@ -1,0 +1,88 @@
+{
+  "homeInfo": {
+    "title": "map",
+    "href": "heelo.html"
+  },
+  "logoInfo": {
+    "title": "桥梁管理系统",
+    "image": "yemian/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "用户管理",
+          "href": "manager.html",
+          "icon": "fa fa-tags",
+          "target": "_self"
+        },
+
+        {
+          "title": "桥梁资料卡",
+          "href": "",
+          "icon": "fa fa-tags",
+          "target": "_self",
+          "child":[{
+            "title": "基本信息",
+            "href": "table.html",
+            "icon": "fa fa-file-text",
+            "target": "_self"
+          },{
+            "title": "一般资料",
+            "href": "table1.html",
+            "icon": "fa fa-stumbleupon-circle",
+            "target": "_self"
+          },{
+            "title": "上部结构",
+            "href": "table2.html",
+            "icon": "fa fa-flag-o",
+            "target": "_self"
+          },{
+            "title": "下部结构",
+            "href": "table3.html",
+            "icon": "fa fa-flag-o",
+            "target": "_self"
+          },{
+            "title": "附属工程",
+            "href": "table4.html",
+            "icon": "fa fa-flag-o",
+            "target": "_self"
+          },{
+            "title": "附挂管线",
+            "href": "table5.html",
+            "icon": "fa fa-flag-o",
+            "target": "_self"
+          }
+          ]
+        },
+        {
+          "title": "日常巡检",
+          "href": "welcome-1.html",
+          "icon": "fa fa-flag-o",
+          "target": "_self"
+        },
+        {
+          "title": "检测内容",
+          "href": "type.html",
+          "icon": "fa fa-flag-o",
+          "target": "_self"
+
+        }
+      ,
+        {
+          "title": "技术评估",
+          "href": "jishupinggu.html",
+          "icon": "fa fa-flag-o",
+          "target": "_self"
+
+        }
+
+      ]
+    }
+  ]
+}

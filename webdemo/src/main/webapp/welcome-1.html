@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首页二</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="yemian/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="yemian/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="yemian/css/public.css" media="all">
+    <style>
+        .layui-card {
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #1aa094;
+        }
+
+        .icon-cray {
+            color: #ffb800 !important;
+        }
+
+        .icon-blue {
+            color: #1e9fff !important;
+        }
+
+        .icon-tip {
+            color: #ff5722 !important;
+        }
+
+        .layuimini-qiuck-module {
+            text-align: center;
+            margin-top: 10px
+        }
+
+        .layuimini-qiuck-module a i {
+            display: inline-block;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 2px;
+            font-size: 30px;
+            background-color: #F8F8F8;
+            color: #333;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+        }
+
+        .layuimini-qiuck-module a cite {
+            position: relative;
+            top: 2px;
+            display: block;
+            color: #666;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .welcome-module {
+            width: 100%;
+            height: 110px;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+        }
+
+        .panel-body {
+            padding: 10px
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            color: inherit
+        }
+
+        .label {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+            margin-top: .3em;
+        }
+
+        .layui-red {
+            color: red
+        }
+
+        .main_btn > p {
+            height: 40px;
+        }
+
+        .layui-bg-number {
+            background-color: #F8F8F8;
+        }
+
+        .layuimini-notice:hover {
+            background: #f6f6f6;
+        }
+
+        .layuimini-notice {
+            padding: 7px 16px;
+            clear: both;
+            font-size: 12px !important;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s ease-in-out;
+        }
+
+        .layuimini-notice-title,
+        .layuimini-notice-label {
+            padding-right: 70px !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+        }
+
+        .layuimini-notice-title {
+            line-height: 28px;
+            font-size: 14px;
+        }
+
+        .layuimini-notice-extra {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            right: 16px;
+            display: inline-block;
+            height: 16px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container" id="a">
+    <div class="layuimini-main">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header"><i class="fa fa-credit-card icon icon-blue"></i>日常巡检</div>
+                    <div class="layui-card-body">
+                        <div class="welcome-module">
+                            <div class="layui-row layui-col-space10 layuimini-qiuck">
+                                <div class="layui-col-xs3 layuimini-qiuck-module">
+                                    <a href="javascript:;" data-title="按钮示例" id="withExport"
+                                       data-icon="fa fa-snowflake-o">
+                                        <i class="fa fa-th-list"></i>
+                                        <cite>桥梁列表</cite>
+                                    </a>
+
+                                </div>
+                                <div class="layui-col-xs3 layuimini-qiuck-module">
+                                    <a href="javascript:;" data-title="按钮示例" id="withExport2"
+                                       data-icon="fa fa-snowflake-o">
+                                        <i class="fa fa-plus-square"></i>
+                                        <cite>巡检录入</cite>
+                                    </a>
+                                </div>
+                                <div class="layui-col-xs3 layuimini-qiuck-module">
+                                    <a href="javascript:;" data-title="按钮示例" id="withExport3"
+                                       data-icon="fa fa-snowflake-o">
+                                        <i class="fa fa-skyatlas"></i>
+                                        <cite>巡检记录</cite>
+                                    </a>
+                                </div>
+                                <div class="layui-col-xs3 layuimini-qiuck-module">
+                                    <a href="javascript:;" data-title="按钮示例" id="withExport4"
+                                       data-icon="fa fa-snowflake-o">
+                                        <i class="fa fa-pie-chart"></i>
+                                        <cite>病害统计</cite>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header"><i class="fa fa-warning icon"></i>常规定期检查</div>
+                    <div class="layui-card-body">
+                        <div class="welcome-module">
+                            <div class="layui-row layui-col-space10 layuimini-qiuck">
+                                <div class="layui-col-xs6 layuimini-qiuck-module">
+                                    <a href="javascript:;" data-title="按钮示例" id="withEsxsport4"
+                                       data-icon="fa fa-snowflake-o">
+                                        <i class="fa fa-skyatlas"></i>
+                                        <cite>常规记录</cite>
+                                    </a>
+                                </div>
+                                <div class="layui-col-xs6 layuimini-qiuck-module">
+                                    <a href="javascript:;" data-title="按钮示例" id="withEdsxport4"
+                                       data-icon="fa fa-snowflake-o">
+                                        <i class="fa fa-plus-square"></i>
+                                        <cite>常规录入</cite>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header"><i class="fa fa-warning icon"></i>结构定期检查</div>
+                    <div class="layui-card-body">
+                        <div class="welcome-module">
+                            <div class="layui-row layui-col-space10 layuimini-qiuck">
+                                <div class="layui-col-xs6 layuimini-qiuck-module">
+                                    <a href="javascript:;" data-title="按钮示例" id="withEssport4"
+                                       data-icon="fa fa-snowflake-o">
+                                        <i class="fa fa-skyatlas"></i>
+                                        <cite>结构记录</cite>
+                                    </a>
+                                </div>
+                                <div class="layui-col-xs6 layuimini-qiuck-module">
+                                    <a href="javascript:;" data-title="按钮示例" data-method="offset"
+                                       data-type="auto" id="withdsxport4" data-icon="fa fa-snowflake-o">
+                                        <i class="fa fa-plus-square"></i>
+                                        <cite>结构录入</cite>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-select" lay-submit lay-filter="*"
+               lay-event="select">查看详细</a>
+        </script>
+        <script type="text/html" id="currentTableBa2">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-select" lay-submit lay-filter="*"
+               lay-event="delete">删除</a>
+        </script>
+        <script type="text/html" id="curreeBa2">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-select" lay-submit lay-filter="*"
+               lay-event="delete2">删除</a>
+        </script>
+
+        <script type="text/html" id="currentTableBar2">
+            <a class="layui-btn layui-btn-normal  layui-btn-xs data-count-select" lay-submit
+               lay-filter="jiegouguangtaijilubiao"
+               lay-event="selecta">结构状态记录表</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-select" lay-submit
+               lay-filter="teshugoujianxinxibiao"
+               lay-event="selectb">特殊构建信息表</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-select" lay-submit
+               lay-filter="teshugoujinxinxibiao"
+               lay-event="delete3">删除</a>
+
+        </script>
+
+    </div>
+
+
+</div>
+
+<script type="text/html" id="usernameTpl">
+    <span style="color: #00a2d4;">{{ d.name }}</span>
+</script>
+<script type="text/html" id="sexTpl">
+    {{#  if(d.state === '优'){ }}
+    <div style='background-color: #5FB878; color: #fff;'>{{ d.state }}</div>
+    {{#  } else if(d.state === '良') { }}
+    <div style='background-color: blue; color: #fff;'>{{ d.state }}</div>
+    {{#  } else if(d.state === '中') { }}
+    <div style='background-color: yellowgreen; color: #fff;'>{{ d.state }}</div>
+    {{#  }else if(d.state === '差') { }}
+    <div style='background-color: darkred; color: #fff;'>{{ d.state }}</div>
+    {{#  }
+
+    }}
+
+
+</script>
+
+
+<script src="yemian/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="yemian/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script type="text/javascript" src="yemian/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+
+<script>
+    layui.use(['layer', 'miniTab', 'echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            miniTab = layui.miniTab,
+            echarts = layui.echarts,
+            table = layui.table;
+        miniTab.listen();
+        table.render({
+            elem: '#currentTableId',
+            url: 'selectQiaoSevlet/selectQiaoServlet',
+            parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": "", //解析提示文本
+                    "count": res.count, //解析数据长度
+                    "data": res //解析数据列表
+                };
+            },
+            toolbar: '#toolbarDemo',
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],cellMinWidth: 80,
+
+            cols: [[
+                // {type: "checkbox", width: 50},
+                {field: 'qiaoliaoBianID', width: 80, title: 'ID', sort: true},
+                {field: 'qiaoliaoKaID', width: 150, title: '桥梁卡号',align: 'center'},
+                {field: 'name', width: 150, title: '桥梁名称',align: 'center',templet: '#usernameTpl'},
+                {field: 'place', width: 150, title: '地区',align: 'center'},
+                {field: 'data', width: 150, title: '建成日期',align: 'center'},
+                {field: 'kua_yue', width: 150, title: '跨越',align: 'center'},
+                {field: 'deng_ji', width: 150, title: '等级',align: 'center'},
+                //  {field: 'sex', width: 80, title: '性别', sort: true},
+                /*  {field: 'password', width: 150, title: 'password'}*/
+                //  {field: 'sign', title: '签名', minWidth: 150},
+                // {field: 'experience', width: 80, title: '积分', sort: true},
+                /* {field: 'score', width: 80, title: '评分', sort: true},
+                 {field: 'classify', width: 80, title: '职业'},
+                 {field: 'wealth', width: 135, title: '财富', sort: true},*/
+                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 1,
+            page: true
+        });
+        table.on('tool(currentTableFilter)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'select') {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    layer.open({
+                        type: 2,
+                        title: '巡检记录表',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['70%', '95%'],
+                        content: 'xunjianbiao.html' //iframe的url
+                    });
+                })
+                return false;
+            } else if (obj.event === 'selecta') {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    layer.open({
+                        type: 2,
+                        title: '结构状态表',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['100%', '100%'],
+                        content: 'jiegouzhuangtaibiao.html' //iframe的url
+                    });
+                })
+                return false;
+            } else if (obj.event === 'selectb') {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    layer.open({
+                        type: 2,
+                        title: '特殊构建信息表',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['100%', '100%'],
+                        content: 'teshugoujianxinxibiao.html' //iframe的url
+                    });
+                })
+                return false;
+            }else if (obj.event === 'delete') {
+
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                        axios({
+                            method:"get",
+                            url:"http://localhost:8080/webdemo/selectServlet/deletexunjianjilu",
+                        }).then(function (resp) {
+                            //alert(resp.data)
+                        })
+                    });
+                })
+                return false;
+            }else if (obj.event === 'delete2') {
+
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                        axios({
+                            method:"get",
+                            url:"http://localhost:8080/webdemo/selectServlet/deletechanggui",
+                        }).then(function (resp) {
+                            //alert(resp.data)
+                        })
+                    });
+                })
+                return false;
+            }else if (obj.event === 'delete3') {
+
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                        axios({
+                            method:"get",
+                            url:"http://localhost:8080/webdemo/selectServlet/deletejiegou",
+                        }).then(function (resp) {
+                            //alert(resp.data)
+                        })
+                    });
+                })
+                return false;
+            }
+        });
+        table.on('tool(currentTableFilter2)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'select') {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    layer.open({
+                        type: 2,
+                        title: '巡检表页',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['70%', '95%'],
+                        content: 'xunjianbiao.html' //iframe的url
+                    });
+                })
+                return false;
+            }
+        });
+        $(document).on('click', "#withExport3", function () {
+            table.render({
+                elem: '#currentTableId',
+                url: 'selectCheakServlet',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [
+                    [
+                        // {type: "checkbox", width: 50},
+                        {
+                            field: 'iD',
+                            width: 80,
+                            title: 'ID',
+                            sort: true
+                        },
+                        {
+                            field: 'qiaoliaoKaID',
+                            width: 140,
+                            title: '桥梁卡号'
+                        },
+                        {
+                            field: 'name',
+                            width: 140,
+                            title: '桥梁名称',
+                            templet: '#usernameTpl'
+                        },
+                        {
+                            field: 'yanghu_danwei',
+                            width: 140,
+                            title: '养护单位'
+                        },
+                        {
+                            field: 'cheak_person',
+                            width: 140,
+                            title: '检测人'
+                        },
+                        {
+                            field: 'jindu',
+                            width: 140,
+                            title: '进度'
+                        },
+                        {
+                            field: 'cheak_date',
+                            width: 140,
+                            title: '检测日期'
+                        },
+
+                        {
+                            title: '巡检表',
+                            minWidth: 140,
+                            toolbar: '#currentTableBar',
+                            align: "center"
+                        },
+
+                        {
+                            title: '操作',
+                            minWidth: 150,
+                            toolbar: '#currentTableBa2',
+                            align: "center"
+                        }
+                    ]
+                ],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: true
+            });
+        });
+        $(document).on('click', "#withExport", function () {
+            layer.open({
+                type: 2,
+                title: 'layer mobile页',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['100%', '100%'],
+                content: 'table.html' //iframe的url
+            });
+
+        });
+        $(document).on('click', "#withExport2", function () {
+            layer.open({
+                type: 2,
+                title: '巡检录入',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['80%', '95%'],
+                content: 'addXunJian.html' //iframe的url
+            });
+
+        });
+        $(document).on('click', "#withExport4", function () {
+            layer.open({
+                type: 2,
+                title: '统计',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['100%', '100%'],
+                content: 'tongji.html' //iframe的url
+            });
+
+        });
+
+        $(document).on('click', "#withEsxsport4", function () {
+
+            table.render({
+                elem: '#currentTableId',
+                url: 'selectQiaoSevlet/selectchangguidingjian',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [
+                    [
+                        // {type: "checkbox", width: 50},
+                        {
+                            field: 'id',
+                            width: 80,
+                            title: 'ID',
+                            sort: true,
+                            align: 'center'
+                        },
+                        {
+                            field: 'qiaoliaoKaID',
+                            width: 150,
+                            title: '桥梁卡号',
+                            align: 'center'
+                        },
+                        {
+                            field: 'name',
+                            width: 150,
+                            title: '桥梁名称',
+                            align: 'center',templet: '#usernameTpl'
+                        },
+                        {
+                            field: 'dingjian_name',
+                            width: 150,
+                            title: '常规定检人',
+                            align: 'center'
+                        },
+                        {
+                            field: 'zhuangkuang',
+                            width: 150,
+                            title: '损害状况',
+                            align: 'center'
+                        },
+                        {
+                            field: 'reason',
+                            width: 150,
+                            title: '原因',
+                            align: 'center'
+                        },
+                        {
+                            field: 'sugestion',
+                            width: 150,
+                            title: '建议',
+                            align: 'center'
+                        },
+                        {
+                            field: 'state',
+                            width: 150,
+                            title: '警示',
+                            templet: '#sexTpl',
+                            align: "center"
+                        },
+                        {
+                            field: 'nexttime',
+                            width: 150,
+                            title: '下次检测时间',
+                            align: 'center'
+                        },
+                        {
+                            title: '操作',
+                            minWidth: 150,
+                            toolbar: '#curreeBa2',
+                            align: "center"
+                        }
+                    ]
+                ],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: true
+            });
+        });
+        $(document).on('click', "#withEdsxport4", function () {
+            layer.open({
+                type: 2,
+                title: '常规录入 ',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['70%', '95%'],
+                content: 'addchangguidingjian.html' //iframe的url
+            });
+
+        });
+        $(document).on('click', "#withEssport4", function () {
+
+            table.render({
+                elem: '#currentTableId',
+                url: 'selectQiaoSevlet/selectjiegoudingjian',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+                toolbar: '#toolbarDemo',
+
+                cols: [
+                    [
+                        // {type: "checkbox", width: 50},
+                        {
+                            field: 'id',
+                            width: 80,
+                            title: 'ID',
+                            sort: true,
+                            align: "center"
+                        },
+                        {
+                            field: 'qiaoliaoKaID',
+                            width: 150,
+                            title: '桥梁卡号',
+                            align: "center"
+                        },
+                        {
+                            field: 'name',
+                            width: 150,
+                            title: '桥梁名称',
+                            align: "center",
+            templet: '#usernameTpl'
+                        },
+                        {
+                            field: 'cheak_person',
+                            width: 150,
+                            title: '定检人',
+                            align: "center"
+                        },
+                        {
+                            field: 'date',
+                            width: 150,
+                            title: '日期',
+                            align: "center"
+                        },
+                        {
+                            title: '操作',
+                            minWidth: 150,
+                            toolbar: '#currentTableBar2',
+                            align: "center"
+                        }
+                    ]
+                ],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: true
+            });
+        });
+        $(document).on('click', "#withdsxport4", function () {
+            layer.open({
+                type: 2,
+                title: ' 结构录入',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['80%', '80%'],
+                content: '3.html' //iframe的url
+            });
+
+        });
+
+        /**
+         * 查看公告信息
+         **/
+
+
+
+        var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+
+        echartsRecords.setOption(optionRecords);
+
+        // echarts 窗口缩放自适应
+        window.onresize = function () {
+            echartsRecords.resize();
+        }
+        $('#a .layui-btn').on('click', function () {
+            var othis = $(this),
+                method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+    });
+</script>
+</body>
+</html>

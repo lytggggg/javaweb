@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="js/axios-0.18.0.js"></script>
+<script>
+    data="你是傻逼"
+    axios({
+        method: "post",
+        url: "http://localhost:8080/webdemo/Myservlet",
+        data:data
+    }).then(function (resp) {
+        alert(resp.data);
+    })
+</script>
+
+</html>

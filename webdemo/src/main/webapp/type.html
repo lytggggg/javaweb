@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html xmlns:align="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>首页二</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="yemian/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="yemian/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="yemian/css/public.css" media="all">
+    <link rel="stylesheet" href="layui/css/layui.css" tppabs="http://res.layui.com/layui/dist/css/layui.css"
+          media="all">
+    <style>
+        .layui-card {
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #1aa094;
+        }
+
+        .icon-cray {
+            color: #ffb800 !important;
+        }
+
+        .icon-blue {
+            color: #1e9fff !important;
+        }
+
+        .icon-tip {
+            color: #ff5722 !important;
+        }
+
+        .layuimini-qiuck-module {
+            text-align: center;
+            margin-top: 10px
+        }
+
+        .layuimini-qiuck-module a i {
+            display: inline-block;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 2px;
+            font-size: 30px;
+            background-color: #F8F8F8;
+            color: #333;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+        }
+
+        .layuimini-qiuck-module a cite {
+            position: relative;
+            top: 2px;
+            display: block;
+            color: #666;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .welcome-module {
+            width: 100%;
+            height: 110px;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+        }
+
+        .panel-body {
+            padding: 10px
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            color: inherit
+        }
+
+        .label {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+            margin-top: .3em;
+        }
+
+        .layui-red {
+            color: red
+        }
+
+        .main_btn > p {
+            height: 40px;
+        }
+
+        .layui-bg-number {
+            background-color: #F8F8F8;
+        }
+
+        .layuimini-notice:hover {
+            background: #f6f6f6;
+        }
+
+        img {
+
+            width: auto \9;
+            width: 100%;
+            height: 300px;
+        }
+
+        .layuimini-notice {
+            padding: 7px 16px;
+            clear: both;
+            font-size: 12px !important;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s ease-in-out;
+        }
+
+        .layuimini-notice-title, .layuimini-notice-label {
+            padding-right: 70px !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+        }
+
+        .layuimini-notice-title {
+            line-height: 28px;
+            font-size: 14px;
+        }
+
+        .layuimini-notice-extra {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            right: 16px;
+            display: inline-block;
+            height: 16px;
+            color: #999;
+        }
+
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+
+        <div class="layui-fluid">
+
+
+            <div class="layui-row">
+                <div class="layui-col-xs3">
+                    <button id="withExport1" type="button"
+                            class="layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid">斜拉桥
+                    </button>
+                </div>
+                <div class="layui-col-xs3">
+                    <button id="withExport2" type="button"
+                            class="layui-btn layui-btn-lg  layui-btn-primary layui-btn-fluid">拱桥
+                    </button>
+                </div>
+                <div class="layui-col-xs3">
+                    <button id="withExport3" type="button"
+                            class="layui-btn layui-btn-lg  layui-btn-primary layui-btn-fluid">梁式桥
+                    </button>
+                </div>
+                <div class="layui-col-xs3">
+                    <button id="withExport4"  type="button"
+                            class="layui-btn layui-btn-lg  layui-btn-primary layui-btn-fluid ">悬索桥
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md4">
+                <table class="layui-hide" id="currentTableId3" lay-filter="currentTableFilter"></table>
+
+            </div>
+            <div class="layui-col-md4">
+
+
+                    <img src="img.png" alt="" id="a" style='display:none;vertical-align:middle' height="294" >
+
+
+
+                <img src="img_1.png" alt="" id="b" style='display:none' height="294">
+                <img src="img_2.png" alt="" id="c" style='display:none' height="294">
+                <img src="img_3.png" alt="" id="d" style='display:none' height="294">
+
+
+            </div>
+            <div class="layui-col-md4">
+                <table class="layui-hide" id="currentTableId2" lay-filter="currentTableFilter"></table>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="yemian/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="yemian/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script type="text/javascript" src="yemian/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script type="text/html" id="usernameTpl">
+
+    <span style="color: #00a2d4;">{{ d.must }}</span>
+</script>
+
+<script type="text/html" id="usernameTpl2">
+
+    <span style="color: #00a2d4;">{{ d.noMust }}</span>
+</script>
+<script>
+
+    layui.use(['layer', 'miniTab', 'echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            miniTab = layui.miniTab,
+            echarts = layui.echarts,
+            table = layui.table;
+        miniTab.listen();
+        table.render({
+            elem: '#currentTableId',
+            url: 'selectQiaoSevlet/selectQiao3Servlet',
+            parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": "", //解析提示文本
+                    "count": res.count, //解析数据长度
+                    "data": res //解析数据列表
+                };
+            },
+            toolbar: '#toolbarDemo',
+
+            cols: [[
+                // {type: "checkbox", width: 50},
+                {field: 'iD', width: 80, title: 'ID', sort: true},
+                {field: 'qiaoliaoKaID', width: 150, title: '桥梁卡号'},
+                {field: 'qiaotaixing_shi', width: 150, title: '桥台形式',},
+
+
+                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 1,
+            page: true
+        });
+
+        table.on('tool(currentTableFilter)', function (obj) {
+
+            var data = obj.data;
+
+            if (obj.event === 'select') {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+
+                    layer.open({
+                        type: 2,
+                        title: 'layer mobile页',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['70%', '95%'],
+                        content: 'xunjianbiao.html' //iframe的url
+                    });
+                })
+
+                /* $(window).on("resize", function () {
+                     layer.full(index);
+                 });*/
+
+                return false;
+            }
+        });
+        $(document).on('click', "#withExport1", function () {
+            document.getElementById('withExport3').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('withExport1').className = "layui-btn layui-btn-lg  layui-btn-fluid";
+            document.getElementById('withExport2').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('withExport4').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('a').style.display = "block";
+            document.getElementById('b').style.display = "none";
+            document.getElementById('c').style.display = "none";
+            document.getElementById('d').style.display = "none";
+
+
+            table.render({
+                elem: '#currentTableId3',
+                url: 'type/type1',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+
+
+                cols: [[
+                    // {type: "checkbox", width: 50},
+                    {field: 'must', width: 426, title: '必      检      项', align: "center",templet: '#usernameTpl'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: false
+            });
+            table.render({
+                elem: '#currentTableId2',
+                url: 'type/type2',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+
+                cols: [[
+                    // {type: "checkbox", width: 50},
+                    {field: 'noMust', width: 426, title: '选  查  项', align: 'center',templet: '#usernameTpl2'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: false
+            });
+        });
+        $(document).on('click', "#withExport3", function () {
+            document.getElementById('withExport3').className = "layui-btn layui-btn-lg  layui-btn-fluid";
+            document.getElementById('withExport1').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('withExport2').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('withExport4').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('a').style.display = "none";
+            document.getElementById('b').style.display = "none";
+            document.getElementById('c').style.display = "block";
+            document.getElementById('d').style.display = "none";
+            table.render({
+                elem: '#currentTableId3',
+                url: 'type/type5',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+
+                cols: [[
+                    // {type: "checkbox", width: 50},
+                    {field: 'must', width: 426, title: '必查项', align: "center",templet: '#usernameTpl'}
+                ]],
+
+                page: false
+            });
+            table.render({
+                elem: '#currentTableId2',
+                url: 'type/type6',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+
+                cols: [[
+
+                    {field: 'noMust', width: 426, title: '选查项', align: 'center',templet: '#usernameTpl2'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: false
+            });
+        });
+        $(document).on('click', "#withExport2", function () {
+            document.getElementById('withExport3').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('withExport1').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('withExport2').className = "layui-btn layui-btn-lg  layui-btn-fluid";
+            document.getElementById('withExport4').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('b').style.display = "block";
+            document.getElementById('a').style.display = "none";
+            document.getElementById('c').style.display = "none";
+            document.getElementById('d').style.display = "none";
+            table.render({
+                elem: '#currentTableId3',
+                url: 'type/type3',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+
+                cols: [[
+                    // {type: "checkbox", width: 50},
+                    {field: 'must', width: 426, title: '必查项', align: "center",templet: '#usernameTpl'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: false
+            });
+            table.render({
+                elem: '#currentTableId2',
+                url: 'type/type4',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+
+                cols: [[
+
+                    {field: 'noMust', width: 426, title: '选查项', align: 'center',templet: '#usernameTpl2'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: false
+            });
+
+        });
+        $(document).on('click', "#withExport4", function () {
+            document.getElementById('withExport3').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('withExport1').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('withExport2').className = "layui-btn layui-btn-lg layui-btn-primary layui-btn-fluid";
+            document.getElementById('withExport4').className = "layui-btn layui-btn-lg  layui-btn-fluid";
+            document.getElementById('a').style.display = "none";
+            document.getElementById('b').style.display = "none";
+            document.getElementById('c').style.display = "none";
+            document.getElementById('d').style.display = "block";
+            table.render({
+                elem: '#currentTableId3',
+                url: 'type/type7',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+
+
+                cols: [[
+                    // {type: "checkbox", width: 50},
+                    {field: 'must', width: 426, title: '必      检      项', align: "center",templet: '#usernameTpl'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: false
+            });
+            table.render({
+                elem: '#currentTableId2',
+                url: 'type/type8',
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": "", //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+
+                cols: [[
+                    // {type: "checkbox", width: 50},
+                    {field: 'noMust', width: 426, title: '选  查  项', align: 'center',templet: '#usernameTpl2'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 1,
+                page: false
+            });
+        });
+        /**
+         * 查看公告信息
+         **/
+
+
+
+        var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+
+        echartsRecords.setOption(optionRecords);
+
+        // echarts 窗口缩放自适应
+        window.onresize = function () {
+            echartsRecords.resize();
+        }
+
+    });
+</script>
+</body>
+</html>

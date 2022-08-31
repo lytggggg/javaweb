@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="yemian/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="yemian/css/public.css" media="all">
+    <style>
+        element.style {
+            margin-top: auto;
+            height: auto;
+            width: auto;
+        }
+
+        .layui-table-tips-main {
+            margin: 1px 0 0 -1px;
+            max-height: 500px;
+            padding: 0px 0px;
+            font-size: 21px;
+            overflow-y: scroll;
+            background-color: #fff;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">修改</a>
+
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+        </script>
+
+    </div>
+</div>
+
+<form id="editForm" method="post" hidden="hidden">
+    <div style="margin:15px 5px 10px 5px"> 类别：<input type="text" id="edit_category"></div>
+    <div style="margin:15px 5px 10px 5px"> 备注：<input type="text" height="30px" id="edit_annotation" maxlength="100">
+    </div>
+</form>
+<script src="yemian/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script type="text/html" id="usernameTpl">
+    <span style="color: #00a2d4;">{{ d.name }}</span>
+</script>
+<script type="text/html" id="usernameTpl2">
+    <span style="color: green;">{{ d.type }}</span>
+</script>
+<script type="text/html" id="sex">
+    {{#  if(d.sex === '女'){ }}
+    <span style="color: #F581B1;">{{ d.sex }}</span>
+    {{#  } else { }}
+    {{ d.sex }}
+    {{#  } }}
+</script>
+<script type="text/html" id="switchTpl">
+    <!-- 这里的 checked 的状态只是演示 -->
+    {{#  if(d.state === '1'){ }}
+    <input type="checkbox" checked="" name="sex" value="{{d.state}}" lay-skin="switch" lay-text="在职|离职">    {{#  } else { }}
+     <input type="checkbox"  name="sex" value="{{d.state}}" lay-skin="switch" lay-text="在职|离职">
+    {{#  } }}
+<!--
+    <input type="checkbox" checked="" name="sex" value="{{d.state}}" lay-skin="switch" lay-text="在职|离职">
+-->
+</script>
+<script>
+
+
+    var ggg;
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+        var a = 4
+        table.render({
+            elem: '#currentTableId',
+            url: 'selectQiaoSevlet/selectUser',
+            parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": "", //解析提示文本
+                    "count": a, //解析数据长度
+                    "data": res //解析数据列表
+                };
+            },
+            toolbar: '#toolbarDemo',
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }], cellMinWidth: 80,
+
+            cols: [[
+
+                {field: 'id', width: 80, title: 'ID', sort: true},
+                {field: 'username', width: 150, title: '用户账户', align: 'center'},
+                {field: 'name', width: 150, title: '用户姓名', align: 'center', templet: '#usernameTpl'},
+                {field: 'sex', width: 150, title: '性别', align: 'center', templet: '#sex'},
+                {field: 'tel', width: 150, title: '手机号', align: 'center'},
+                {field: 'type', width: 150, title: '角色', align: 'center', templet: '#usernameTpl2'},
+                {field: 'date', width: 150, title: '创建日期', align: 'center'},
+                {field: 'state', width: 150, title: '职位状态', align: 'center', templet: '#switchTpl', unresize: true},
+
+                {title: '操作', minWidth: 200, toolbar: '#currentTableBar', align: "center", fixed: 'right'}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 1,
+            page: true
+        });
+
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+            var result = JSON.stringify(data.field);
+            layer.alert(result, {
+                title: '最终的搜索信息'
+            });
+
+            //执行搜索重载
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    searchParams: result
+                }
+            }, 'data');
+
+            return false;
+        });
+
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'add') {  // 监听添加操作
+                var index = layer.open({
+                    title: '添加',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: 'add.html',
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+            } else if (obj.event === 'delete') {  // 监听删除操作
+                var checkStatus = table.checkStatus('currentTableId')
+                    , data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+        table.on('tool(currentTableFilter)', function (obj) {
+
+            var data = obj.data;
+
+            if (obj.event === 'edit') {
+                // alert(data.name)
+               /* axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/updateServlet/cookie",
+                    data: data
+                }).then(function (resp) {*/
+                    //alert(resp.data)
+                    var index = layer.open({
+                        title: '编辑',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['40%', '80%'],
+                        content: 'user.html',
+                    });
+                /*})*/
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+
+                return false;
+            } else if (obj.event === 'delete') {
+
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+
+                });
+                a=3
+            } else if (obj.event === 'select') {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    var index = layer.open({
+                        title: '查看详sad细',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: 'qiao_liang_zl_ka.html',
+                    });
+                })
+
+                /* $(window).on("resize", function () {
+                     layer.full(index);
+                 });*/
+
+                return false;
+            }
+        });
+        $(document).on('click', "#jkl", function () {
+
+
+        });
+    });
+</script>
+
+</body>
+</html>

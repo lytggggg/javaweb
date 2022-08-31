@@ -1,0 +1,33 @@
+{
+  "homeInfo": {
+    "title": "map",
+    "href": "heelo.html"
+  },
+  "logoInfo": {
+    "title": "LA",
+    "image": "yemian/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+
+
+
+        {
+          "title": "技术评估",
+          "href": "jishupinggu.html",
+          "icon": "fa fa-flag-o",
+          "target": "_self"
+        }
+
+
+
+      ]
+    }
+  ]
+}

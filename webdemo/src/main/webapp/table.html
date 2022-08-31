@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="yemian/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="yemian/css/public.css" media="all">
+    <style>
+        element.style {
+            margin-top: auto;
+            height: auto;
+            width: auto;
+        }
+
+        .layui-table-tips-main {
+            margin: 1px 0 0 -1px;
+            max-height: 500px;
+            padding: 0px 0px;
+            font-size: 21px;
+            overflow-y: scroll;
+            background-color: #fff;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+
+
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px" id="btn">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">桥梁卡号</label>
+                            <div class="layui-input-inline">
+
+                                <input class="layui-input" name="keyword" id="demoReload" autocomplete="off">
+
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+
+                            <button type="button" class="layui-btn layui-btn-primary" id="search_btn"  data-type="reload" lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+
+
+
+
+
+
+
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加</button>
+
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-select" lay-submit lay-filter="*"
+               lay-event="select">查看详细</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+        </script>
+
+    </div>
+</div>
+
+<form id="editForm" method="post" hidden="hidden">
+    <div style="margin:15px 5px 10px 5px"> 类别：<input type="text" id="edit_category"></div>
+    <div style="margin:15px 5px 10px 5px"> 备注：<input type="text" height="30px" id="edit_annotation" maxlength="100">
+    </div>
+</form>
+<script src="yemian/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script type="text/html" id="usernameTpl">
+    <span style="color: #00a2d4;">{{ d.name }}</span>
+</script>
+<!--<script type="text/html" id="usernameTpl">
+    <a class="layui-tree-iconClick" id="jkl">{{ d.name+"      " }}</a>
+    <div id="layer-photos-demo" class="layer-photos-demo">
+        <img src="img.png" style="height: 200px;width: 400px;" >
+    </div>
+   &lt;!&ndash; <a href="{{ d.name }}" class="layui-table-link" id="jkl">一个可跳转的按钮</a>&ndash;&gt;
+   &lt;!&ndash; <img src="" style="height: 100px;width: 108px;" class="layui-nav-img">&ndash;&gt;
+</script>-->
+<script>
+
+
+    var ggg;
+
+
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+
+        /* axios({
+             method: "get",
+             url: "http://localhost:8080/webdemo/selectQiaoSevlet/selectQiaoServlet",
+         }).then(function (resp) {
+             count=resp.data.length
+
+         })*/
+
+
+        table.render({
+            elem: '#currentTableId',
+            url: 'selectQiaoSevlet/selectQiaoServlet',
+            parseData: function (res) {
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": "", //解析提示文本
+                    "count": 7,//解析数据长度
+                    "data": res //解析数据列表
+                };
+
+            },
+            toolbar: '#toolbarDemo',
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }], cellMinWidth: 80,
+
+            cols: [[
+                // {type: "checkbox", width: 50},
+                {field: 'qiaoliaoBianID', width: 80, title: 'ID', sort: true},
+                {field: 'qiaoliaoKaID', width: 150, title: '桥梁卡号', align: 'center'},
+                {field: 'name', width: 150, title: '桥梁名称', align: 'center', templet: '#usernameTpl'},
+                {field: 'place', width: 150, title: '地区', align: 'center'},
+                {field: 'data', width: 150, title: '建成日期', align: 'center'},
+                {field: 'kua_yue', width: 150, title: '跨越', align: 'center'},
+                {field: 'deng_ji', width: 150, title: '等级', align: 'center'},
+
+                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 1,
+            page: true
+        });
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+            var result = JSON.stringify(data.field);
+            layer.alert(result, {
+                title: '最终的搜索信息'
+            });
+
+            //执行搜索重载
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    searchParams: result
+                }
+            }, 'data');
+
+            return false;
+        });
+
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'add') {  // 监听添加操作
+                var index = layer.open({
+                    title: '添加',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: 'add.html',
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+            } else if (obj.event === 'delete') {  // 监听删除操作
+                var checkStatus = table.checkStatus('currentTableId')
+                    , data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+        table.on('tool(currentTableFilter)', function (obj) {
+
+            var data = obj.data;
+
+            if (obj.event === 'edit') {
+                // alert(data.name)
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/updateServlet/cookie",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    var index = layer.open({
+                        title: '编辑',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['40%', '95%'],
+                        content: 'qiaol_edit.html',
+                    });
+                })
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+
+                return false;
+            } else if (obj.event === 'delete') {
+
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+
+                    layer.confirm('真的删除行么', function (index) {
+
+                        layer.close(index);
+                        axios({
+                            method: "get",
+                            url: "http://localhost:8080/webdemo/selectServlet/deleteServlet",
+                        }).then(function (resp) {
+                            if (resp.data == "1") {
+                                layer.confirm("该桥梁存在其他记录，无法删除");
+                            } else {
+                                layer.msg("删除成功");
+                                obj.del();
+
+                            }
+                        })
+                    });
+                })
+            } else if (obj.event === 'select') {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/webdemo/selectServlet/selectServlet",
+                    data: data
+                }).then(function (resp) {
+                    //alert(resp.data)
+                    var index = layer.open({
+                        title: '查看详sad细',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: 'qiao_liang_zl_ka.html',
+                    });
+                })
+
+                /* $(window).on("resize", function () {
+                     layer.full(index);
+                 });*/
+
+                return false;
+            }
+        });
+        $(document).on('click','#search_btn',function (data) {
+            var search =  $('#demoReload');    //search是jQuery获取的输入框对象
+            table.render({
+
+                elem: '#currentTableId',
+                url: 'selectQiaoServlet/sousuoqiao',
+                where: {
+                    qiaoliaoKaID: search.val()
+                },
+                parseData: function (res) {
+                    console.log(res)//res 即为原始返回的数据
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": res.msg, //解析提示文本
+                        "count": 5, //解析数据长度
+                        "data": res //解析数据列表
+                    };
+                },
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }], cellMinWidth: 80,
+                cols: [[
+                    // {type: "checkbox", width: 50},
+                    {field: 'qiaoliaoBianID', width: 80, title: 'ID', sort: true},
+                    {field: 'qiaoliaoKaID', width: 150, title: '桥梁卡号', align: 'center'},
+                    {field: 'name', width: 150, title: '桥梁名称', align: 'center', templet: '#usernameTpl'},
+                    {field: 'place', width: 150, title: '地区', align: 'center'},
+                    {field: 'data', width: 150, title: '建成日期', align: 'center'},
+                    {field: 'kua_yue', width: 150, title: '跨越', align: 'center'},
+                    {field: 'deng_ji', width: 150, title: '等级', align: 'center'},
+
+                    {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+                ]],
+
+            });
+
+        });
+        $(document).on('click', "#jkl", function () {
+
+
+        });
+    });
+</script>
+
+</body>
+</html>

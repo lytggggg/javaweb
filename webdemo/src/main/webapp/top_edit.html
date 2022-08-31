@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title>VForm Demo</title>
+    <link rel="stylesheet" href="css/index.min.css"/>
+    <link rel="stylesheet" href="css/render.style.css?t=20220129">
+    <link rel="stylesheet" href="yemian/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="yemian/css/public.css" media="all">
+    <style type="text/css">
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="layui-form layuimini-form">
+
+        <v-form-render :form-json="formJson" :form-data="formData" :option-data="optionData" ref="vFormRef">
+        </v-form-render>
+        <el-button type="primary" @click="submitForm">Submit</el-button>
+    </div>
+</div>
+<script src="js/vue.global.min.js"></script>
+<script src="js/index.full.min.js"></script>
+<script src="js/render.umd.js?t=20220129"></script>
+<script src="yemian/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script>
+    const {createApp} = Vue;
+
+    const app = createApp({
+        data() {
+            return {
+
+                formJson: {"widgetList":[{"type":"static-text","icon":"static-text","formItemFlag":false,"options":{"name":"statictext111193","columnWidth":"200px","hidden":false,"textContent":"单列表单","customClass":[],"onCreated":"","onMounted":"","label":"static-text"},"id":"statictext111193"},{"type":"divider","icon":"divider","formItemFlag":false,"options":{"name":"divider102346","label":"","columnWidth":"200px","direction":"horizontal","contentPosition":"center","hidden":false,"customClass":[],"onCreated":"","onMounted":""},"id":"divider102346"},{"type":"input","icon":"text-field","formItemFlag":true,"options":{"name":"qiaoliaoKaID","label":"桥梁卡号","labelAlign":"","type":"text","defaultValue":"","placeholder":"","columnWidth":"200px","size":"","labelWidth":null,"labelHidden":false,"readonly":false,"disabled":false,"hidden":false,"clearable":true,"showPassword":false,"required":true,"validation":"","validationHint":"","customClass":[],"labelIconClass":null,"labelIconPosition":"rear","labelTooltip":null,"minLength":null,"maxLength":null,"showWordLimit":false,"prefixIcon":"","suffixIcon":"","appendButton":false,"appendButtonDisabled":false,"buttonIcon":"el-icon-search","onCreated":"","onMounted":"","onInput":"","onChange":"","onFocus":"","onBlur":"","onValidate":""},"id":"input12931"},{"type":"input","icon":"text-field","formItemFlag":true,"options":{"name":"zhuliang_xingshi","label":"主梁形式","labelAlign":"","type":"text","defaultValue":"","placeholder":"","columnWidth":"200px","size":"","labelWidth":null,"labelHidden":false,"readonly":false,"disabled":false,"hidden":false,"clearable":true,"showPassword":false,"required":true,"validation":"","validationHint":"","customClass":[],"labelIconClass":null,"labelIconPosition":"rear","labelTooltip":null,"minLength":null,"maxLength":null,"showWordLimit":false,"prefixIcon":"","suffixIcon":"","appendButton":false,"appendButtonDisabled":false,"buttonIcon":"el-icon-search","onCreated":"","onMounted":"","onInput":"","onChange":"","onFocus":"","onBlur":"","onValidate":""},"id":"input23031"},{"type":"input","icon":"text-field","formItemFlag":true,"options":{"name":"zhuliang_chicun","label":"主梁尺寸","labelAlign":"","type":"text","defaultValue":"","placeholder":"","columnWidth":"200px","size":"","labelWidth":null,"labelHidden":false,"readonly":false,"disabled":false,"hidden":false,"clearable":true,"showPassword":false,"required":true,"validation":"","validationHint":"","customClass":"","labelIconClass":null,"labelIconPosition":"rear","labelTooltip":null,"minLength":null,"maxLength":null,"showWordLimit":false,"prefixIcon":"","suffixIcon":"","appendButton":false,"appendButtonDisabled":false,"buttonIcon":"el-icon-search","onCreated":"","onMounted":"","onInput":"","onChange":"","onFocus":"","onBlur":"","onValidate":""},"id":"input40240"},{"type":"input","icon":"text-field","formItemFlag":true,"options":{"name":"zhuliang_number","label":"主梁数量","labelAlign":"","type":"text","defaultValue":"","placeholder":"","columnWidth":"200px","size":"","labelWidth":null,"labelHidden":false,"readonly":false,"disabled":false,"hidden":false,"clearable":true,"showPassword":false,"required":true,"validation":"","validationHint":"","customClass":"","labelIconClass":null,"labelIconPosition":"rear","labelTooltip":null,"minLength":null,"maxLength":null,"showWordLimit":false,"prefixIcon":"","suffixIcon":"","appendButton":false,"appendButtonDisabled":false,"buttonIcon":"el-icon-search","onCreated":"","onMounted":"","onInput":"","onChange":"","onFocus":"","onBlur":"","onValidate":""},"id":"input78584"},{"key":92142,"type":"input","icon":"text-field","formItemFlag":true,"options":{"name":"hengliang_xingshi","label":"横梁形式","labelAlign":"","type":"text","defaultValue":"","placeholder":"","columnWidth":"200px","size":"","labelWidth":null,"labelHidden":false,"readonly":false,"disabled":false,"hidden":false,"clearable":true,"showPassword":false,"required":false,"requiredHint":"","validation":"","validationHint":"","customClass":"","labelIconClass":null,"labelIconPosition":"rear","labelTooltip":null,"minLength":null,"maxLength":null,"showWordLimit":false,"prefixIcon":"","suffixIcon":"","appendButton":false,"appendButtonDisabled":false,"buttonIcon":"custom-search","onCreated":"","onMounted":"","onInput":"","onChange":"","onFocus":"","onBlur":"","onValidate":""},"id":"input85144"}],"formConfig":{"modelName":"formData","refName":"vForm","rulesName":"rules","labelWidth":150,"labelPosition":"left","size":"","labelAlign":"label-right-align","cssCode":"","customClass":[],"functions":"","layoutType":"PC","jsonVersion":3,"onFormCreated":"","onFormMounted":"","onFormDataChange":"","onFormValidate":""}},
+
+                formData: {},
+                optionData: {}
+            }
+        },
+        methods: {
+            submitForm: function () {
+                this.$refs.vFormRef.getFormData().then(function (formData) {
+                    // Form Validation OK
+                    //  alert(JSON.stringify(formData))
+                    axios({
+                        method: "post",
+                        url: "http://localhost:8080/webdemo/updateServlet/update2Servlet",
+                        data: formData
+                    }).then(function (resp) {
+                        //alert(resp.data)
+                        var iframeIndex = parent.layer.getFrameIndex(window.name);
+                        parent.location.reload();
+                        parent.layer.close(iframeIndex);
+                    })
+                }).catch(function (error) {
+                    // Form Validation Failed
+                    alert(error)
+                })
+            }
+        },
+        mounted() {
+            // 页面加载完成后，发送异步请求，查询数据
+            //从后端接口获取已保存的数据对象（如只显示空白表单、则跳过此步骤），并赋值给formData变量，需自行实现！！
+            axios.get("http://localhost:8080/webdemo/updateServlet/select4Servlet").then(res => {
+                let newFormData = null
+                newFormData = res.data
+                this.$nextTick(() => {
+                    this.$refs.vFormRef.setFormData(newFormData)
+                })
+                //从后端接口获取表单json对象，然后调用v-form-render对象的setFormJson(xxx)加载表单，需自行实现！！
+            }).catch(err => {
+                //
+            })
+
+        }
+
+
+    });
+    app.use(ElementPlus)
+    app.use(VFormRender)
+    app.mount("#app");
+</script>
+</body>
+</html>

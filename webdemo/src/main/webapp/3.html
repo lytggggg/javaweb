@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>首页二</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="yemian/lib/layui-v2.6.3/css/layui.css" media="all">
+		<link rel="stylesheet" href="yemian/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+		<link rel="stylesheet" href="yemian/css/public.css" media="all">
+	</head>
+
+	<body>
+		<div class="layui-btn-container">
+			<button id="a" type="button" class="layui-btn layui-btn-lg layui-btn-primary">桥梁录入</button>
+			<button id="b" type="button" class="layui-btn layui-btn-lg layui-btn-primary">结构状态记录</button>
+			<button id="c" type="button" class="layui-btn layui-btn-lg layui-btn-primary">特殊构件信息记录</button>
+			<button id="d" type="button" class="layui-btn layui-btn-lg layui-btn-primary">照片记录</button>
+
+		</div>
+	</body>
+
+
+	<script src="yemian/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+	<script src="yemian/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+	<script type="text/javascript" src="yemian/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+	<script src="js/axios-0.18.0.js"></script>
+
+	<script>
+		$(document).on('click', "#a", function() {
+			var index = layer.open({
+				type: 2,
+				title: '桥梁录入',
+				shadeClose: true,
+				shade: false,
+				maxmin: true, //开启最大化最小化按钮
+				area: ['100%', '100%'],
+
+				content: 'addqiaoliangluru.html'
+			});
+
+	
+		});
+		$(document).on('click', "#b", function() {
+			layer.open({
+				type: 2,
+				title: '结构状态记录表',
+				shadeClose: true,
+				shade: false,
+				maxmin: true, //开启最大化最小化按钮
+				area: ['100%', '100%'],
+				content: 'addjiegouzhuangtaibiao.html'
+			});
+			
+		});
+		$(document).on('click', "#c", function() {
+			layer.open({
+				type: 2,
+				title: '特殊构建信息表',
+				shadeClose: true,
+				shade: false,
+				maxmin: true, //开启最大化最小化按钮
+				area: ['100%', '100%'],
+				content: 'addteshugoujianxinxibiao.html'
+			});
+			
+		});
+		$(document).on('click', "#d", function() {
+			layer.open({
+				type: 2,
+				title: '照片记录',
+				shadeClose: true,
+				shade: false,
+				maxmin: true, //开启最大化最小化按钮
+				area: ['100%', '100%'],
+				content: 'addzhaopianjilubiao.html',
+
+			});
+			
+
+		});
+
+
+		var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+
+		echartsRecords.setOption(optionRecords);
+
+		// echarts 窗口缩放自适应
+		window.onresize = function() {
+			echartsRecords.resize();
+		}
+	</script>
+
+
+
+
+</html>

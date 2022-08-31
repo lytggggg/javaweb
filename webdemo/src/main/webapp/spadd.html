@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="yemian/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="yemian/css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">姓名</label>
+        <div class="layui-input-block">
+            <input id="qiaoliaoKaID" type="text" name="spbianma" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="" value="" class="layui-input">
+            <!-- <tip>填写桥梁卡号。</tip>-->
+            <tip> <span id="qiaoliaoKaID_err" class="err_msg" style="display: none">该桥梁已存在</span></tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">家庭住址</label>
+        <div class="layui-input-block">
+            <input id="qiaoliaoKaID" type="text" name="spname" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="" value="" class="layui-input">
+            <!-- <tip>填写桥梁卡号。</tip>-->
+            <tip> <span id="qiaoliaoKaI_err" class="err_msg" style="display: none">该桥梁已存在</span></tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">联系电话</label>
+        <div class="layui-input-block">
+            <input id="qiaoliaoKaID" type="text" name="xiaoshouPrice" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="" value="" class="layui-input">
+            <!-- <tip>填写桥梁卡号。</tip>-->
+            <tip> <span id="qiaoliaoKa_err" class="err_msg" style="display: none">该桥梁已存在</span></tip>
+        </div>
+    </div>
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label required">进价</label>
+        <div class="layui-input-block">
+            <input id="qiaoiaoKaID" type="text" name="chengbenPrice" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="" value="" class="layui-input">
+            &lt;!&ndash; <tip>填写桥梁卡号。</tip>&ndash;&gt;
+            <tip> <span id="qiaoliaoKaerr" class="err_msg" style="display: none">该桥梁已存在</span></tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">库存</label>
+        <div class="layui-input-block">
+            <input id="qiaoliaKaID" type="text" name="kucunnumber" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="" value="" class="layui-input">
+            &lt;!&ndash; <tip>填写桥梁卡号。</tip>&ndash;&gt;
+            <tip> <span id="qioliaoKa_err" class="err_msg" style="display: none">该桥梁已存在</span></tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">分类编号</label>
+        <div class="layui-input-block">
+            <input id="qioliaoKaID" type="text" name="typeid" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="" value="" class="layui-input">
+            &lt;!&ndash; <tip>填写桥梁卡号。</tip>&ndash;&gt;
+            <tip> <span id="qaoliaoKa_err" class="err_msg" style="display: none">该桥梁已存在</span></tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">品牌编号</label>
+        <div class="layui-input-block">
+            <input id="qiaoliao" type="text" name="ppid" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="" value="" class="layui-input">
+            &lt;!&ndash; <tip>填写桥梁卡号。</tip>&ndash;&gt;
+            <tip> <span id="qiaoliKa_err" class="err_msg" style="display: none">该桥梁已存在</span></tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">规格编号</label>
+        <div class="layui-input-block">
+            <input id="qialiaoKaID" type="text" name="ggid" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="" value="" class="layui-input">
+            &lt;!&ndash; <tip>填写桥梁卡号。</tip>&ndash;&gt;
+            <tip> <span id="qiaoliaoK_err" class="err_msg" style="display: none">该桥梁已存在</span></tip>
+        </div>
+    </div>-->
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">确认提交</button>
+        </div>
+    </div>
+
+</div>
+<script src="yemian/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script>
+
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg('提交成功！');
+            data=data.field
+
+            axios({
+                method:"post",
+                url:"http://localhost:8080/webdemo/addServlet/spadd",
+                data:data
+            }).then(function (resp) {
+                // 判断响应数据是否为 success
+                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                parent.location.reload();
+                parent.layer.close(iframeIndex);
+            })
+
+            return true;
+        });
+
+    });
+</script>
+</body>
+</html>
+<!--
+添加桥梁资料卡-->
